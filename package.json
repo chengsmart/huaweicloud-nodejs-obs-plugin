@@ -1,0 +1,29 @@
+{
+  "name": "huaweicloud-nodejs-obs-plugin",
+  "version": "0.1.0",
+  "description": "Local batch upload of HUAWEI CLOUD plug-ins",
+  "main": "./lib/index.js",
+  "scripts": {
+  },
+  "dependencies": {
+    "chalk": "4.1.2",
+    "esdk-obs-nodejs": "^3.21.6"
+  },
+  "devDependencies": {},
+  "peerDependencies": {},
+  "keywords": [
+    "huaweicloud",
+    "huaweicloud-obs",
+    "nodejs",
+    "upload"
+  ],
+  "author": "chengshuai.tj@gmail.com",
+  "license": "MIT",
+  "bin": {
+    "uploadImages": "./bin/upload-img",
+    "uploadFont": "./bin/upload-font"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}
