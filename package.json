@@ -1,6 +1,6 @@
 {
   "name": "huaweicloud-nodejs-obs-plugin",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Local batch upload of HUAWEI CLOUD plug-ins",
   "main": "./lib/index.js",
   "scripts": {
@@ -17,7 +17,14 @@
     "nodejs",
     "upload"
   ],
-  "author": "chengshuai.tj@gmail.com",
+  "author": "chengshuai.tj@gmail.com",  "repository": {
+  "type": "git",
+    "url": "git+https://github.com/NB-Super-Mario/cli.git"
+  },
+  "bugs": {
+    "url": "https://github.com/NB-Super-Mario/cli/issues"
+  },
+  "homepage": "https://github.com/NB-Super-Mario/cli#readme",
   "license": "MIT",
   "bin": {
     "uploadImages": "./bin/upload-img",

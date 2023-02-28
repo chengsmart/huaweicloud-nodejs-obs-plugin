@@ -1,6 +1,14 @@
-huaweicloud-nodejs-obs-plugin
+# huaweicloud-nodejs-obs-plugin
 
 本地批量上传华为云插件
+
+[![NPM version][npm-image]][npm-url]
+[![npm download][download-image]][download-url]
+
+[npm-image]: http://img.shields.io/npm/v/huaweicloud-nodejs-obs-plugin.svg?style=flat-square
+[npm-url]: https://www.npmjs.com/package/huaweicloud-nodejs-obs-plugin
+[download-image]: https://img.shields.io/npm/dm/huaweicloud-nodejs-obs-plugin.svg?style=flat-square
+[download-url]: https://www.npmjs.com/package/huaweicloud-nodejs-obs-plugin
 
 ## 插件说明
 
