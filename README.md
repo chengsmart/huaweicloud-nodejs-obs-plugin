@@ -36,3 +36,6 @@ module.exports = {
 
 ```
 
+## 使用效果
+
+![image-20230301114315359](https://p.ipic.vip/ar1ikg.png)
