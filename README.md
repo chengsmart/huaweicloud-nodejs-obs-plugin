@@ -18,7 +18,7 @@
 
 1. `npm i -D huaweicloud-nodejs-obs-plugin`
 2. 在项目根目录添加配置文件`obs-config.js`
-3. 在项目根目录执行`uploadImages`
+3. 在项目根目录执行`uploadImages`或者`uploadFont`
 
 ## 配置文档
 
@@ -29,13 +29,25 @@ module.exports = {
   OBS_SK: '', // OBS Secret Access Key
   BUCKET_NAME: 'myStore', // 桶名称
   OBJECT_NAME: 'wesite/demo/', // OBS对象的前置文件夹
+  OBJECT_FONT_NAME: '', // iconfont 上传到obs的路径
   IMG_PATH: '/src/static/images', // 项目中要上传的资源目录
   BAK_PATH: '/bak.images', // 上传后的备份资源目录
-  IGNORE_FILES: ['.DS_Store'] // 忽略上传名单
+  IGNORE_FILES: ['.DS_Store'], // 忽略上传名单
+  ICONFONT_IGNORE_FILES: [], // iconfont文件夹下的上传忽略名单
+  TEMPLATE_FONT_FACE: '', // 要替换的font-face的内容
 };
 
 ```
 
+## Tips
+
+1. 上传前需要注意`桶`是否真实存在于obs中，否则会报错
+2. iconfont默认是[iconfont](https://www.iconfont.cn/)，上传路径是手动解压后的绝对路径
+
 ## 使用效果
 
 ![image-20230301114315359](https://p.ipic.vip/ar1ikg.png)
+
+## TODOs
+
+1. iconfont上传实现自动解压
