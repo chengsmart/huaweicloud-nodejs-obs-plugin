@@ -1,12 +1,13 @@
 {
   "name": "huaweicloud-nodejs-obs-plugin",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "description": "Local batch upload of HUAWEI CLOUD plug-ins",
   "main": "./lib/index.js",
-  "scripts": {
-  },
+  "scripts": {},
   "dependencies": {
+    "ansi-colors": "^4.1.3",
     "chalk": "4.1.2",
+    "cli-progress": "^3.12.0",
     "esdk-obs-nodejs": "^3.21.6"
   },
   "devDependencies": {},
@@ -19,7 +20,7 @@
   ],
   "author": "chengshuai.tj@gmail.com",
   "repository": {
-  "type": "git",
+    "type": "git",
     "url": "git+https://github.com/chengsmart/huaweicloud-nodejs-obs-plugin.git"
   },
   "bugs": {
