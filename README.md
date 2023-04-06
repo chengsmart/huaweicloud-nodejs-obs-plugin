@@ -18,7 +18,11 @@
 
 1. `npm i -D huaweicloud-nodejs-obs-plugin`
 2. 在项目根目录添加配置文件`obs-config.js`
-3. 在项目根目录执行`uploadImages`或者`uploadFont`
+3. 在项目根目录执行
+   1. `uploadImages` 用于上传小程序图片资源，会检测备份目录是否存在相同文件，然后自动移动目标文件夹的图片到备份目录
+   2. `uploadFont` 自动解压zip压缩包并上传字体资源
+   3. `uploadFiles` 上传文件夹下的所有文件夹，不会检测存在重复，不会移动目标文件
+
 
 ## 配置文档
 
@@ -32,6 +36,8 @@ module.exports = {
   OBJECT_FONT_NAME: '', // iconfont 上传到obs的路径
   IMG_PATH: '/src/static/images', // 项目中要上传的资源目录
   BAK_PATH: '/bak.images', // 上传后的备份资源目录
+  FILES_PATH: '/src/static/files_folder', // 原有资源目录
+  FILES_FOLDER: 'www/', // 上传文件到obs的文件夹
   FONT_PATH: '/src/styles/iconfont.css', // iconfont 样式文件更新位置
   IGNORE_FILES: ['.DS_Store'], // 忽略上传名单
   ICONFONT_IGNORE_FILES: [], // iconfont文件夹下的上传忽略名单
