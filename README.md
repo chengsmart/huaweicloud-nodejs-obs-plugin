@@ -65,7 +65,7 @@ module.exports = {
 
 ### 上传文件
 
-![WX20230408-113728](https://p.ipic.vip/iuoxnl.png)
+![WX20230408-113728](https://p.ipic.vip/zwbkx7.png)
 
 ### 上传iconfont
 
