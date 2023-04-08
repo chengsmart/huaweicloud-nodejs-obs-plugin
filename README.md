@@ -65,8 +65,8 @@ module.exports = {
 
 ### 上传文件
 
-![WX20230408-113728](/Users/chengshuai/Downloads/WX20230408-113728.png)
+![WX20230408-113728](https://p.ipic.vip/iuoxnl.png)
 
 ### 上传iconfont
 
-![WechatIMG93](/Users/chengshuai/Downloads/WechatIMG93.png)
+![WechatIMG93](https://p.ipic.vip/4rkfu3.png)
