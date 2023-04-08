@@ -21,7 +21,7 @@
 3. 在项目根目录执行
    1. `uploadImages` 用于上传小程序图片资源，会检测备份目录是否存在相同文件，然后自动移动目标文件夹的图片到备份目录
    2. `uploadFont` 自动解压zip压缩包并上传字体资源
-   3. `uploadFiles` 上传文件夹下的所有文件夹，不会检测存在重复，不会移动目标文件
+   3. `uploadFiles` 上传文件夹下的所有文件夹，覆盖上传，不会移动目标文件
 
 
 ## 配置文档
@@ -32,16 +32,22 @@ module.exports = {
   OBS_AK: '', // OBS Access Key ID
   OBS_SK: '', // OBS Secret Access Key
   BUCKET_NAME: 'myStore', // 桶名称
-  OBJECT_NAME: 'wesite/demo/', // OBS对象的前置文件夹
-  OBJECT_FONT_NAME: '', // iconfont 上传到obs的路径
-  IMG_PATH: '/src/static/images', // 项目中要上传的资源目录
-  BAK_PATH: '/bak.images', // 上传后的备份资源目录
-  FILES_PATH: '/src/static/files_folder', // 原有资源目录
-  FILES_FOLDER: 'www/', // 上传文件到obs的文件夹
-  FONT_PATH: '/src/styles/iconfont.css', // iconfont 样式文件更新位置
-  IGNORE_FILES: ['.DS_Store'], // 忽略上传名单
-  ICONFONT_IGNORE_FILES: [], // iconfont文件夹下的上传忽略名单
+  OBJECT_NAME: 'wesite/demo/', // OBS对象的前置文件夹，一般指项目目录
+  // uploadImages 相关
+  IMAGES_OBS_FOLDER: 'images/', // 远程项目目录的images资源文件夹
+  IMAGES_PATH: '/src/static/images', // 本地原有资源目录
+  IMAGES_BACKUP_PATH: '/bak.images', // 本地备份资源目录
+  IMAGES_IGNORE: ['.DS_Store'], // 忽略上传名单
+  // uploadFiles
+  FILES_OBS_FOLDER: 'static/', // 远程项目目录的资源文件夹
+  FILES_PATH: '/src/static/files_folder', // 本地原有资源目录
+  FILES_IGNORE: [], // 忽略上传名单
+  // uploadFont
+  ICONFONT_OBS_FOLDER: 'iconfont/', // 远程项目目录的iconfont文件夹
+  ICONFONT_FILE_PATH: '/src/styles/iconfont.css', // 本地iconfont.css文件位置，用于更新font-face
+  ICONFONT_IGNORE: ['demo_index.html', 'demo.css'], // iconfont 上传忽略名单
   TEMPLATE_FONT_FACE: '', // 要替换的font-face的内容
+
 };
 
 ```
