@@ -1,6 +1,6 @@
 {
   "name": "huaweicloud-nodejs-obs-plugin",
-  "version": "0.6.0-rc.4",
+  "version": "0.6.1",
   "description": "Local batch upload of HUAWEI CLOUD plug-ins",
   "main": "dist/index.js",
   "scripts": {
@@ -47,6 +47,9 @@
     "uploadFont": "./bin/upload-font",
     "uploadFiles": "./bin/upload-files"
   },
+  "files": [
+    "lib"
+  ],
   "publishConfig": {
     "access": "public"
   }
