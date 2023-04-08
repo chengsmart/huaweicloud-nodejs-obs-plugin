@@ -1,11 +1,11 @@
 {
   "name": "huaweicloud-nodejs-obs-plugin",
-  "version": "0.6.0-beta.1",
+  "version": "0.6.0-beta.2",
   "description": "Local batch upload of HUAWEI CLOUD plug-ins",
   "main": "dist/index.js",
   "scripts": {
-    "dev": "npm run clean && tsc -p ./  --outDir lib -d true -w",
-    "build": "npm run clean && tsc -p ./ --outDir lib -d true",
+    "dev": "tsc -p ./  --outDir lib -d true -w",
+    "build": "tsc -p ./ --outDir lib -d true",
     "clean": "rimraf lib"
   },
   "dependencies": {
