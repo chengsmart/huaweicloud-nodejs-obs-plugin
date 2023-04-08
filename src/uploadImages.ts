@@ -6,6 +6,8 @@ import colors from 'ansi-colors';
 import {uploadFile} from './utils/upload';
 import {moveFile} from './utils/moveFile';
 import {getConfig} from "./utils/getConfig";
+// 不限制监听数量
+require('events').EventEmitter.defaultMaxListeners = 0;
 
 let filesTotalNum = 0; // 总文件数量
 let filesDoneNum = 0; // 已经上传的数量
