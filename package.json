@@ -1,9 +1,13 @@
 {
   "name": "huaweicloud-nodejs-obs-plugin",
-  "version": "0.6.0-alpha.1",
+  "version": "0.6.0-alpha.2",
   "description": "Local batch upload of HUAWEI CLOUD plug-ins",
-  "main": "./lib/index.js",
-  "scripts": {},
+  "main": "dist/index.js",
+  "scripts": {
+    "dev": "npm run clean && tsc -p ./  --outDir lib -d true -w",
+    "build": "npm run clean && tsc -p ./ --outDir lib -d true",
+    "clean": "rimraf lib"
+  },
   "dependencies": {
     "adm-zip": "^0.5.10",
     "ansi-colors": "^4.1.3",
@@ -12,8 +16,16 @@
     "esdk-obs-nodejs": "^3.21.6",
     "iconv-lite": "^0.6.3"
   },
-  "devDependencies": {},
-  "peerDependencies": {},
+  "devDependencies": {
+    "@types/node": "^18.15.11",
+    "@typescript-eslint/eslint-plugin": "^5.57.1",
+    "@typescript-eslint/parser": "^5.57.1",
+    "@typescript-eslint/typescript-estree": "^5.57.1",
+    "eslint": "^8.37.0",
+    "eslint-config-standard": "^17.0.0",
+    "rimraf": "^4.4.1",
+    "typescript": "^5.0.3"
+  },
   "keywords": [
     "huaweicloud",
     "huaweicloud-obs",
@@ -33,8 +45,11 @@
   "bin": {
     "uploadImages": "./bin/upload-img",
     "uploadFont": "./bin/upload-font",
-    "uploadFiles": "bin/upload-files"
+    "uploadFiles": "./bin/upload-files"
   },
+  "files": [
+    "lib"
+  ],
   "publishConfig": {
     "access": "public"
   }
