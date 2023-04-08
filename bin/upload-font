@@ -1,2 +1,2 @@
 #!/usr/bin/env node
-require('../lib/font.js');
+require('../lib/uploadFont.js');
