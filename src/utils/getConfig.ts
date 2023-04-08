@@ -6,14 +6,19 @@ export interface obsConfig {
   OBS_SK: string,
   BUCKET_NAME: string,
   OBJECT_NAME: string,
-  OBJECT_FONT_NAME: string,
-  IMG_PATH: string,
-  BAK_PATH: string,
+
+  IMAGES_OBS_FOLDER:string,
+  IMAGES_PATH: string,
+  IMAGES_BACKUP_PATH: string,
+  IMAGES_IGNORE: Array<string>,
+
   FILES_PATH: string,
-  FILES_FOLDER:string,
-  FONT_PATH: string,
-  IGNORE_FILES: Array<string>,
-  ICONFONT_IGNORE_FILES: Array<string>,
+  FILES_OBS_FOLDER:string,
+  FILES_IGNORE: Array<string>,
+
+  ICONFONT_OBS_FOLDER: string,
+  ICONFONT_FILE_PATH: string,
+  ICONFONT_IGNORE: Array<string>,
   TEMPLATE_FONT_FACE: string
 }
 

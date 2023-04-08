@@ -48,7 +48,7 @@ const fileDisplay = async (_filePath?: string) => {
                 // 是文件
                 if (isFile) {
                     const relativePath = fileDir.replace(filesPath + '/', '');
-                    if (config.IGNORE_FILES.includes(relativePath)) {
+                    if (config.IMAGES_IGNORE.includes(relativePath)) {
                         console.log(chalk.gray('【忽略】该文件已存在于忽略列表，文件名' + relativePath));
                         return;
                     }
@@ -56,7 +56,7 @@ const fileDisplay = async (_filePath?: string) => {
                     filesTotalNum++;
                     uploadProgress.setTotal(filesTotalNum);
                     // 上传obs，上传完成后调整展示计数
-                    const targetPath = config.OBJECT_NAME + config.FILES_FOLDER + relativePath; // demo 'upload-example/coupon-empty.png'
+                    const targetPath = config.OBJECT_NAME + config.FILES_OBS_FOLDER + relativePath; // demo 'upload-example/coupon-empty.png'
                     const sourcePath = filesPath + '/' + relativePath;
                     uploadFile(targetPath, sourcePath, () => {
                     }, () => {

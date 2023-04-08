@@ -12,10 +12,10 @@ const move = (sourceFile, destPath) => {
     if (err) throw err;
   });
 };
-export const moveFile = async (filePath, filename) => {
+export const moveFile = async (filePath:string, filename:string) => {
   const config = await getConfig();
-  const sourceFile = path.join(projectPath, config.IMG_PATH, filePath);
-  const destPath = path.join(projectPath, config.BAK_PATH, filePath);
+  const sourceFile = path.join(projectPath, config.IMAGES_PATH, filePath);
+  const destPath = path.join(projectPath, config.IMAGES_BACKUP_PATH, filePath);
   // 目标文件夹不存在同名文件，可以移动，已经在上传前判断完了
   const targetPath = destPath.replace(filename, '');
   fs.stat(targetPath, (_, stats) => {

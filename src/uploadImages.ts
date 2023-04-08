@@ -21,7 +21,7 @@ const uploadProgress = new cliProgress.SingleBar({
 const fileDisplay = async (_filePath?: string) => {
     const config = await getConfig();
     // 文件夹路径
-    const imagesPath = path.resolve('.' + config.IMG_PATH);
+    const imagesPath = path.resolve('.' + config.IMAGES_PATH);
     let filePath: string;
     if (typeof _filePath === 'undefined') {
         filePath = imagesPath
@@ -49,19 +49,19 @@ const fileDisplay = async (_filePath?: string) => {
                 // 是文件
                 if (isFile) {
                     const relativePath = fileDir.replace(imagesPath + '/', '');
-                    if (config.IGNORE_FILES.includes(relativePath)) {
+                    if (config.IMAGES_IGNORE.includes(relativePath)) {
                         console.log(chalk.gray('【忽略】该文件已存在于忽略列表，文件名' + relativePath));
                         return;
                     }
                     try {
-                        const destPath = path.join(process.cwd(), config.BAK_PATH, relativePath);
+                        const destPath = path.join(process.cwd(), config.IMAGES_BACKUP_PATH, relativePath);
                         fs.accessSync(destPath, fs.constants.F_OK);
                         console.log(chalk.yellow('【命名重复】该文件已存在或已上传，文件名' + relativePath));
                     } catch (err) {
                         filesTotalNum++;
                         uploadProgress.setTotal(filesTotalNum);
                         // 上传obs，上传完成后移动本地文件
-                        const targetPath = config.OBJECT_NAME + 'images/' + relativePath; // demo 'upload-example/coupon-empty.png'
+                        const targetPath = config.OBJECT_NAME + config.IMAGES_OBS_FOLDER + relativePath; // demo 'upload-example/coupon-empty.png'
                         const sourcePath = imagesPath + '/' + relativePath;
                         uploadFile(targetPath, sourcePath, () => moveFile(relativePath, filename), () => {
                         }, () => {

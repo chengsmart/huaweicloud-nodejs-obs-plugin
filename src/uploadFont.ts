@@ -38,9 +38,9 @@ const unzip = (zipFile, destFolder) => {
     zip.extractAllTo(destFolder, true);
     return decompressionPathName
 }
-const changeFileUrl = async (dirPath) => {
+const changeFileUrl = async (dirPath: string) => {
     const config = await getConfig();
-    const fontPath = process.cwd() + config.FONT_PATH;
+    const fontPath = process.cwd() + config.ICONFONT_FILE_PATH;
     const newFile = dirPath + 'iconfont.css';
     fs.readFile(newFile, 'utf8', (_, dataStr) => {
 
@@ -71,7 +71,7 @@ const uploadSource = async (dirPath) => {
         let hasDoneNum = 0;
         files.forEach((filename) => {
             // 实际小程序项目只使用到了ttf文件
-            if (config?.ICONFONT_IGNORE_FILES?.includes(filename)) {
+            if (config?.ICONFONT_IGNORE?.includes(filename)) {
                 hasDoneNum++;
                 if (hasDoneNum >= total) {
                     removeTempDir()
@@ -79,7 +79,7 @@ const uploadSource = async (dirPath) => {
                 return;
             }
             // ! 需要检测是否存在文件夹，目前因为下载文件不存在文件夹的情况，所以暂无该逻辑
-            const targetPath = config.OBJECT_NAME + config.OBJECT_FONT_NAME + filename;
+            const targetPath = config.OBJECT_NAME + config.ICONFONT_OBS_FOLDER + filename;
             const sourcePath = dirPath + filename;
             uploadFile(targetPath, sourcePath, () => {
                 console.log(chalk.green(`${filename} 上传成功`));
