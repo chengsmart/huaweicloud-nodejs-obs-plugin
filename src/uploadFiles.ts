@@ -50,7 +50,7 @@ const fileDisplay = async (_filePath?: string) => {
                 // 是文件
                 if (isFile) {
                     const relativePath = fileDir.replace(filesPath + '/', '');
-                    if (config.IMAGES_IGNORE.includes(relativePath)) {
+                    if (config.FILES_IGNORE?.includes(relativePath)) {
                         console.log(chalk.gray('【忽略】该文件已存在于忽略列表，文件名' + relativePath));
                         return;
                     }
