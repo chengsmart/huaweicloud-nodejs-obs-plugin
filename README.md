@@ -59,5 +59,14 @@ module.exports = {
 
 ## 使用效果
 
+### 上传图片
+
 ![image-20230301114315359](https://p.ipic.vip/ar1ikg.png)
 
+### 上传文件
+
+![WX20230408-113728](/Users/chengshuai/Downloads/WX20230408-113728.png)
+
+### 上传iconfont
+
+![WechatIMG93](/Users/chengshuai/Downloads/WechatIMG93.png)
