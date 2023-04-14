@@ -35,6 +35,11 @@ const fileDisplay = async (_filePath?: string) => {
             console.log(chalk.red('读取文件失败'));
             return;
         }
+        if(files?.length === 0 && typeof _filePath === 'undefined'){
+            // 从第一次遍历，文件夹下就没有可上传的资源
+            console.log(chalk.yellow(`${filePath}下没有可上传的资源`));
+            return;
+        }
         uploadProgress.start(1, filesDoneNum); // 默认从1个文件开始
         // 遍历读取到的文件列表
         files.forEach((filename) => {
