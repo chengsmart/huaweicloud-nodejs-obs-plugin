@@ -46,7 +46,15 @@ module.exports = {
   ICONFONT_OBS_FOLDER: 'iconfont/', // 远程项目目录的iconfont文件夹
   ICONFONT_FILE_PATH: '/src/styles/iconfont.css', // 本地iconfont.css文件位置，用于更新font-face
   ICONFONT_IGNORE: ['demo_index.html', 'demo.css'], // iconfont 上传忽略名单
-  TEMPLATE_FONT_FACE: '', // 要替换的font-face的内容
+  // 要替换的font-face的内容
+  TEMPLATE_FONT_FACE: 
+          '@font-face {\n' +
+          '  font-family: "iconfont";\n' +
+          '  src: url(\'https://your.obs-cdn.com/wesite/demo/iconfont/iconfont.woff2\') format(\'woff2\'),\n' +
+          '    url(\'https://your.obs-cdn.com/wesite/demo/iconfont/iconfont.woff\') format(\'woff\'),\n' +
+          '    url(\'https://your.obs-cdn.com/wesite/demo/iconfont/iconfont.ttf\') format(\'truetype\'),\n' +
+          '    url(\'https://your.obs-cdn.com/wesite/demo/iconfont/iconfont.svg\') format(\'svg\');\n' +
+          '}',
 
 };
 
