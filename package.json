@@ -1,6 +1,6 @@
 {
   "name": "huaweicloud-nodejs-obs-plugin",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Local batch upload of HUAWEI CLOUD plug-ins",
   "main": "lib/test.js",
   "scripts": {
