@@ -1,6 +1,8 @@
 import fs from 'fs'
+import os from 'os'
 import path from 'path'
 import chalk from 'chalk';
+import slash from 'slash';
 import cliProgress from 'cli-progress';
 import colors from 'ansi-colors';
 import {uploadFile} from './utils/upload';
@@ -8,6 +10,9 @@ import {moveFile} from './utils/moveFile';
 import {getConfig} from "./utils/getConfig";
 // 不限制监听数量
 require('events').EventEmitter.defaultMaxListeners = 0;
+
+const andPath  =  (os.type() == "Windows_NT") ?'\\':'/'
+
 
 let filesTotalNum = 0; // 总文件数量
 let filesDoneNum = 0; // 已经上传的数量
@@ -55,7 +60,7 @@ const fileDisplay = async (_filePath?: string) => {
                 const isFile = stats.isFile();
                 // 是文件
                 if (isFile) {
-                    const relativePath = fileDir.replace(imagesPath + '/', '');
+                    const relativePath = fileDir.replace(imagesPath + andPath, '');
                     if (config.IMAGES_IGNORE?.includes(relativePath)) {
                         console.log(chalk.gray('【忽略】该文件已存在于忽略列表，文件名' + relativePath));
                         return;
@@ -69,8 +74,8 @@ const fileDisplay = async (_filePath?: string) => {
                         uploadProgress.setTotal(filesTotalNum);
                         // 上传obs，上传完成后移动本地文件
                         const targetPath = config.OBJECT_NAME + config.IMAGES_OBS_FOLDER + relativePath; // demo 'upload-example/coupon-empty.png'
-                        const sourcePath = imagesPath + '/' + relativePath;
-                        uploadFile(targetPath, sourcePath, () => moveFile(relativePath, filename), () => {
+                        const sourcePath = path.join(imagesPath ,relativePath);
+                        uploadFile(slash(targetPath), sourcePath, () => moveFile(relativePath, filename), () => {
                         }, () => {
                             filesDoneNum++;
                             uploadProgress.update(filesDoneNum)
