@@ -1,5 +1,5 @@
 import {join} from "path";
-import {dynamicImport} from "./dynamic-import";
+// import {dynamicImport} from "./dynamic-import";
 
 export interface obsConfig {
   OBS_AK: string,
@@ -23,5 +23,6 @@ export interface obsConfig {
 }
 
 export const getConfig = async():Promise<obsConfig>=>{
-  return await dynamicImport(join(process.cwd(), 'obs-config.js'))
+  return require(join(process.cwd(), 'obs-config.js'))
+  // return await dynamicImport(join(process.cwd(), 'obs-config.js'))
 }
