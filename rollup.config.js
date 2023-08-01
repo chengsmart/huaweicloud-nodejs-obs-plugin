@@ -22,6 +22,7 @@ module.exports = {
         sourcemap: false,
         exports: 'none',
     },
+    external: ['esdk-obs-nodejs', 'adm-zip', 'iconv-lite', 'cli-progress', 'ansi-colors', 'chalk'],
 // 使用的插件
 // 注意，这里的插件使用是有顺序的，先把ts编译为js，然后查找依赖，最后压缩
     plugins: [typescript({
