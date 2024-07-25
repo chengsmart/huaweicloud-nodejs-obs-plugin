@@ -1,6 +1,6 @@
-import fs from 'fs'
-import os from 'os'
-import path from 'path'
+import fs from 'fs';
+import os from 'os';
+import path from 'path';
 import chalk from 'chalk';
 import slash from 'slash';
 import cliProgress from 'cli-progress';
@@ -11,11 +11,12 @@ import {getConfig} from "./utils/getConfig";
 // 不限制监听数量
 require('events').EventEmitter.defaultMaxListeners = 0;
 
-const andPath  =  (os.type() == "Windows_NT") ?'\\':'/'
+const andPath = (os.type() == "Windows_NT") ? '\\' : '/';
 
 
 let filesTotalNum = 0; // 总文件数量
 let filesDoneNum = 0; // 已经上传的数量
+let filesIgnoreNum = 0; // 已经忽略的数量
 
 const uploadProgress = new cliProgress.SingleBar({
     format: '上传进度 |' + colors.green('{bar}') + '| {value}/{total}',
@@ -31,7 +32,7 @@ const fileDisplay = async (_filePath?: string) => {
     const imagesPath = path.resolve('.' + config.IMAGES_PATH);
     let filePath: string;
     if (typeof _filePath === 'undefined') {
-        filePath = imagesPath
+        filePath = imagesPath;
     } else {
         filePath = _filePath;
     }
@@ -41,7 +42,8 @@ const fileDisplay = async (_filePath?: string) => {
             console.log(chalk.red('读取文件失败'));
             return;
         }
-        if(files?.length === 0 && typeof _filePath === 'undefined'){
+        const filesLength = files?.length;
+        if (filesLength === 0 && typeof _filePath === 'undefined') {
             // 从第一次遍历，文件夹下就没有可上传的资源
             console.log(chalk.yellow(`${filePath}下没有可上传的资源`));
             return;
@@ -63,6 +65,9 @@ const fileDisplay = async (_filePath?: string) => {
                     const relativePath = fileDir.replace(imagesPath + andPath, '');
                     if (config.IMAGES_IGNORE?.includes(relativePath)) {
                         console.log(chalk.gray('【忽略】该文件已存在于忽略列表，文件名' + relativePath));
+                        if (filesDoneNum + filesIgnoreNum >= filesTotalNum) {
+                            uploadProgress.stop();
+                        }
                         return;
                     }
                     try {
@@ -74,12 +79,12 @@ const fileDisplay = async (_filePath?: string) => {
                         uploadProgress.setTotal(filesTotalNum);
                         // 上传obs，上传完成后移动本地文件
                         const targetPath = config.OBJECT_NAME + config.IMAGES_OBS_FOLDER + relativePath; // demo 'upload-example/coupon-empty.png'
-                        const sourcePath = path.join(imagesPath ,relativePath);
+                        const sourcePath = path.join(imagesPath, relativePath);
                         uploadFile(slash(targetPath), sourcePath, () => moveFile(relativePath, filename), () => {
                         }, () => {
                             filesDoneNum++;
-                            uploadProgress.update(filesDoneNum)
-                            if (filesDoneNum >= filesTotalNum) {
+                            uploadProgress.update(filesDoneNum);
+                            if (filesDoneNum + filesIgnoreNum >= filesTotalNum) {
                                 uploadProgress.stop();
                             }
                         });
@@ -91,6 +96,9 @@ const fileDisplay = async (_filePath?: string) => {
                 isDir && fileDisplay(fileDir);
             });
         });
+        if (filesDoneNum + filesIgnoreNum >= filesTotalNum) {
+            uploadProgress.stop();
+        }
     });
 };
 
