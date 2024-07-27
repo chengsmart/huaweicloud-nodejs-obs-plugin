@@ -18,6 +18,8 @@ let filesTotalNum = 0; // 总文件数量
 let filesDoneNum = 0; // 已经上传的数量
 let filesIgnoreNum = 0; // 已经忽略的数量
 
+let progressisStart = false;
+
 const uploadProgress = new cliProgress.SingleBar({
     format: '上传进度 |' + colors.green('{bar}') + '| {value}/{total}',
     barCompleteChar: '\u2588',
@@ -48,7 +50,6 @@ const fileDisplay = async (_filePath?: string) => {
             console.log(chalk.yellow(`${filePath}下没有可上传的资源`));
             return;
         }
-        uploadProgress.start(1, filesDoneNum); // 默认从1个文件开始
         // 遍历读取到的文件列表
         files.forEach((filename) => {
             // 获取当前文件的绝对路径
@@ -62,14 +63,22 @@ const fileDisplay = async (_filePath?: string) => {
                 const isFile = stats.isFile();
                 // 是文件
                 if (isFile) {
+
                     const relativePath = fileDir.replace(imagesPath + andPath, '');
+                    // 忽略列表
                     if (config.IMAGES_IGNORE?.includes(relativePath)) {
                         console.log(chalk.gray('【忽略】该文件已存在于忽略列表，文件名' + relativePath));
-                        if (filesDoneNum + filesIgnoreNum >= filesTotalNum) {
+                        if (filesDoneNum + filesIgnoreNum >= filesTotalNum && progressisStart) {
                             uploadProgress.stop();
                         }
                         return;
                     }
+
+                    if (!progressisStart) {
+                        // 未开始，则开始进度条
+                        uploadProgress.start(1, filesDoneNum);
+                    }
+
                     try {
                         const destPath = path.join(process.cwd(), config.IMAGES_BACKUP_PATH, relativePath);
                         fs.accessSync(destPath, fs.constants.F_OK);
@@ -96,9 +105,6 @@ const fileDisplay = async (_filePath?: string) => {
                 isDir && fileDisplay(fileDir);
             });
         });
-        if (filesDoneNum + filesIgnoreNum >= filesTotalNum) {
-            uploadProgress.stop();
-        }
     });
 };
 
